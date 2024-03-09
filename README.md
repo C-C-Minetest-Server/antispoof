@@ -8,5 +8,3 @@ This mod rejects the registration of usernames too similar to the existing ones.
 4. `1F616EMO-c` (underscore replaced with a dash)
 
 Do not forget to run the database update script (chat command `/as_db_init`) after the installation and every time after the `_as.flattern_map` table is updated (or if you are unsure, every time you update this mod).
-
-This mod is inspired by the AntiSpoof 

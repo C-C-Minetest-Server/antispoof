@@ -19,9 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 ]]
 
--- minetest/src/player.h
--- #define PLAYERNAME_ALLOWED_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
-
 antispoof = {}
 antispoof.internal = {}
 antispoof.internal.logger = logging.logger("antispoof")

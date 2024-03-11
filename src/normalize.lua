@@ -19,6 +19,10 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 ]]
 
+local _as = antispoof
+local _int = _as.internal
+local logger = _int.logger:sublogger("normalize")
+
 -- Change this value every time the table below updates,
 -- or the implentation of _as.normalize changes.
 _as.flattern_map_ver = "1"

@@ -1,5 +1,5 @@
--- antispoof/src/on_join.lua
--- Handle player join
+-- antispoof/src/callbacks.lua
+-- Handle player join and account creation
 --[[
     AntiSpoof: Preventing confusable usernames
     Copyright (C) 2024  1F616EMO
@@ -49,3 +49,9 @@ minetest.register_on_newplayer(function(player)
     local name = player:get_player_name()
     _as.add_username(name)
 end)
+
+local old_set_player_password = minetest.set_player_password
+function minetest.set_player_password(name, password_hash)
+    old_set_player_password(name, password_hash)
+    _as.add_username(name)
+end

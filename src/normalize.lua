@@ -1,5 +1,5 @@
--- antispoof/init.lua
--- Preventing confusable usernames
+-- antispoof/src/normalize.lua
+-- Handle normalization of usernames
 --[[
     AntiSpoof: Preventing confusable usernames
     Copyright (C) 2024  1F616EMO
@@ -19,19 +19,33 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 ]]
 
-antispoof = {}
-antispoof.internal = {}
-antispoof.internal.logger = logging.logger("antispoof")
-antispoof.internal.S = minetest.get_translator("antispoof")
+-- Change this value every time the table below updates,
+-- or the implentation of _as.normalize changes.
+_as.flattern_map_ver = "1"
 
-local MP = minetest.get_modpath("antispoof")
-for _, name in ipairs({
-    "normalize",
-    "storage",
-    "db",
-    "callbacks",
-}) do
-    dofile(MP .. "/src/" .. name .. ".lua")
+-- Usernames are all first converted to uppercase
+-- Therefore, the sources and destinations should be uppercase.
+_as.flattern_map = {
+    ["0"] = "O",
+    ["Q"] = "O",
+    ["9"] = "O", -- 9 -> Q -> O
+
+    ["1"] = "I",
+    ["L"] = "I",
+
+    ["2"] = "Z",
+
+    ["5"] = "S",
+
+    ["_"] = "-",
+
+    ["V"] = "U",
+}
+
+function _as.normalize(name)
+    name = string.upper(name)
+    for src, dst in pairs(_as.flattern_map) do
+        name = string.gsub(name, src, dst)
+    end
+    return name
 end
-
-antispoof.internal = nil

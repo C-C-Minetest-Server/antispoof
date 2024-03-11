@@ -25,36 +25,6 @@ local logger = _int.logger:sublogger("db")
 
 local S = _int.S
 
--- minetest/src/player.h
--- #define PLAYERNAME_ALLOWED_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
-
--- Usernames are all first converted to uppercase
--- Therefore, the sources and destinations should be uppercase.
-_as.flattern_map = {
-    ["0"] = "O",
-    ["Q"] = "O",
-    ["9"] = "O", -- 9 -> Q -> O
-
-    ["1"] = "I",
-    ["L"] = "I",
-
-    ["2"] = "Z",
-
-    ["5"] = "S",
-
-    ["_"] = "-",
-
-    ["V"] = "U",
-}
-
-function _as.normalize(name)
-    name = string.upper(name)
-    for src, dst in pairs(_as.flattern_map) do
-        name = string.gsub(name, src, dst)
-    end
-    return name
-end
-
 -- Check if the username is inside the table
 -- i.e. not avaliable
 function _as.check_username(name)

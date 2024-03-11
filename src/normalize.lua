@@ -41,15 +41,19 @@ _as.flattern_map = {
 
     ["5"] = "S",
 
-    ["_"] = "-",
+    ["_"] = "",
+    ["-"] = "",
 
     ["V"] = "U",
 }
 
 function _as.normalize(name)
     name = string.upper(name)
+
+    -- Apply the flattern map
     for src, dst in pairs(_as.flattern_map) do
         name = string.gsub(name, src, dst)
     end
+
     return name
 end
